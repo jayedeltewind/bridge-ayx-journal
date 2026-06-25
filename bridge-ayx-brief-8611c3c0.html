@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爱游戏 · 从主题到探索</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(145deg, #fce6d1 0%, #fbe3c9 30%, #f6d4b3 70%, #f2c8a3 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1.5rem;
+            color: #3b2c1f;
+            line-height: 1.6;
+        }
+
+        .page {
+            max-width: 1024px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 2.2rem;
+        }
+
+        /* 白色卡片风格 */
+        .card {
+            background: rgba(255, 252, 247, 0.92);
+            backdrop-filter: blur(2px);
+            border-radius: 40px;
+            padding: 2.4rem 2.8rem;
+            box-shadow: 0 12px 32px -8px rgba(140, 80, 40, 0.18),
+                        0 4px 12px rgba(200, 140, 100, 0.08);
+            transition: transform 0.2s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 16px 40px -10px rgba(130, 70, 30, 0.22);
+        }
+
+        /* HERO 区 — 暖色渐变 + 圆角 */
+        .hero {
+            background: linear-gradient(105deg, #fceedb 0%, #f7dcc0 60%, #f3d0ae 100%);
+            border-radius: 44px;
+            padding: 3.8rem 3.2rem;
+            text-align: center;
+            box-shadow: 0 8px 18px rgba(170, 100, 50, 0.12);
+            border: 1px solid rgba(255, 240, 220, 0.6);
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            font-weight: 450;
+            letter-spacing: 2px;
+            color: #3d2a1a;
+            margin-bottom: 0.8rem;
+            text-shadow: 0 2px 4px rgba(220, 160, 100, 0.15);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 640px;
+            margin: 0 auto;
+            color: #5c432e;
+            font-weight: 360;
+        }
+
+        .hero .lead-link {
+            display: inline-block;
+            margin-top: 1.8rem;
+            background: #deaa7a;
+            color: #2f1f12;
+            text-decoration: none;
+            padding: 0.6rem 2.2rem;
+            border-radius: 60px;
+            font-size: 1.2rem;
+            font-weight: 430;
+            box-shadow: 0 4px 12px rgba(190, 120, 60, 0.2);
+            transition: background 0.2s, transform 0.1s;
+            border: 1px solid #f3d5b5;
+        }
+
+        .hero .lead-link:hover {
+            background: #e6b88a;
+            transform: scale(1.01);
+        }
+
+        /* 网格布局：优势区 + 说明区 */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.8rem;
+        }
+
+        @media (max-width: 700px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+            .card {
+                padding: 1.8rem 1.6rem;
+            }
+            .hero {
+                padding: 2.6rem 1.6rem;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        .card h2 {
+            font-size: 1.6rem;
+            font-weight: 440;
+            color: #3f2c1a;
+            letter-spacing: 0.5px;
+            border-left: 6px solid #dba570;
+            padding-left: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            font-weight: 420;
+            color: #5a3e28;
+            margin-top: 1.2rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .card p, .card li {
+            color: #4b3623;
+            font-weight: 360;
+        }
+
+        .card ul {
+            list-style: none;
+            padding-left: 0.25rem;
+        }
+
+        .card li {
+            padding: 0.3rem 0 0.3rem 1.4rem;
+            position: relative;
+        }
+
+        .card li::before {
+            content: "·";
+            position: absolute;
+            left: 0.2rem;
+            color: #c58f5c;
+            font-weight: 600;
+        }
+
+        .faq-item {
+            margin: 1rem 0;
+            border-bottom: 1px dashed #e6cfb8;
+            padding-bottom: 0.8rem;
+        }
+
+        .faq-item:last-of-type {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .faq-q {
+            font-weight: 450;
+            color: #3d2a18;
+            margin-bottom: 0.2rem;
+        }
+
+        .faq-a {
+            color: #5b4330;
+            font-size: 0.98rem;
+        }
+
+        .link-spot {
+            color: #b17847;
+            text-decoration: none;
+            font-weight: 430;
+            border-bottom: 2px solid rgba(190, 130, 70, 0.2);
+            transition: border-color 0.2s;
+        }
+
+        .link-spot:hover {
+            border-bottom-color: #b17847;
+        }
+
+        .footer-note {
+            text-align: center;
+            padding: 1.2rem 0 0.2rem;
+            font-size: 0.95rem;
+            color: #4f3c2b;
+            border-top: 1px solid rgba(170, 120, 70, 0.15);
+            margin-top: 0.6rem;
+        }
+
+        .footer-note a {
+            color: #8b623f;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+
+        .footer-note a:hover {
+            border-bottom-color: #8b623f;
+        }
+
+        .bottom-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.8rem 2.6rem;
+            margin-top: 0.4rem;
+        }
+
+        .bottom-links a {
+            color: #6f4f33;
+            text-decoration: none;
+            font-weight: 400;
+            padding: 0.3rem 0.8rem;
+            border-radius: 30px;
+            background: rgba(245, 220, 195, 0.3);
+            transition: background 0.2s;
+            font-size: 0.98rem;
+        }
+
+        .bottom-links a:hover {
+            background: rgba(220, 175, 135, 0.35);
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <!-- HERO 区 -->
+        <div class="hero">
+            <h1>沿着主题，自然抵达</h1>
+            <p>一些内容平台从兴趣出发，让探索成为习惯。<br>从游戏、叙事到社区讨论，<a href="https://bridge-ayx.com.cn" class="link-spot" style="background:transparent; border-bottom:2px solid #b17847;padding:0;font-weight:450;">爱游戏</a> 是一种视角，也是许多人的日常索引。</p>
+            <a href="https://bridge-ayx.com.cn" class="lead-link">爱游戏</a>
+        </div>
+
+        <!-- 双栏：优势 + 说明 -->
+        <div class="grid-2">
+            <!-- 优势区 -->
+            <div class="card">
+                <h2>为什么从主题开始</h2>
+                <p>当内容按照主题聚合，浏览变得更像交谈。每个板块都围绕一个核心词语展开，没有碎片推送的压迫感。</p>
+                <ul>
+                    <li>结构清晰，分类有呼吸感</li>
+                    <li>信息呈现克制，不鼓吹点击</li>
+                    <li>从用户关心的题材自然延伸</li>
+                    <li>避免算法茧房，保持选择的自由</li>
+                </ul>
+                <p style="margin-top:1.2rem;">这种设计让阅读回归平实，更像翻阅一本有温度的杂志。</p>
+            </div>
+
+            <!-- 说明区：场景与理解 -->
+            <div class="card">
+                <h2>使用场景 · 理解方式</h2>
+                <p>你不必抱着明确目的——有时只是顺着一个词走进去：<a href="https://bridge-ayx.com.cn" class="link-spot">爱游戏</a> 可以是一个起点，也可以是一个逗号。</p>
+                <div style="margin:1rem 0 0.4rem;">
+                    <p style="font-weight:410; color:#4e3522;">常见的情境</p>
+                    <ul>
+                        <li>想看看最近有哪些值得关注的独立作品</li>
+                        <li>在社区里读到一篇讨论，然后延展到更多内容</li>
+                        <li>纯粹想了解某个主题背后的人与想法</li>
+                    </ul>
+                </div>
+                <p style="margin-top:1rem;">这里没有夸张的催促，只有主题本身带来的引力。</p>
+            </div>
+        </div>
+
+        <!-- FAQ 摘要卡片 -->
+        <div class="card">
+            <h2 style="border-left-color:#cfa36c;">常见想法 · 简要回答</h2>
+            <div class="faq-item">
+                <div class="faq-q">这个网站适合什么样的人？</div>
+                <div class="faq-a">对内容质量有要求、希望按主题浏览而非被动接收的人。无论是否资深玩家，只要对特定题材有好奇心，都能找到自己的路径。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">内容更新节奏如何？</div>
+                <div class="faq-a">以主题为单位进行组织，并非每日轰炸。新的板块或专题会逐步出现，保持一种缓慢而持续的充实感。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">需要注册或登录吗？</div>
+                <div class="faq-a">浏览内容无需注册。部分互动区域可能需要简单参与，但阅读始终是开放的。</div>
+            </div>
+            <p style="margin-top:1rem; font-size:0.95rem; color:#5e4632;">如果你对某个主题产生好奇，不妨从 <a href="https://bridge-ayx.com.cn" class="link-spot">爱游戏</a> 开始一次安静的探索。</p>
+        </div>
+
+        <!-- 底部链接区 -->
+        <div class="card" style="padding:1.6rem 2.8rem;">
+            <div class="bottom-links">
+                <a href="https://bridge-ayx.com.cn">爱游戏</a>
+                <a href="https://bridge-ayx.com.cn">爱游戏</a>
+                <a href="https://bridge-ayx.com.cn">爱游戏</a>
+                <a href="https://bridge-ayx.com.cn">爱游戏</a>
+            </div>
+            <div class="footer-note">
+                <p>以内容为核心，不喧哗，不跟随。  <a href="https://bridge-ayx.com.cn">爱游戏</a> 作为主题入口，提供一种轻缓的浏览选择。</p>
+                <p style="margin-top:0.6rem; opacity:0.7;">© 2025 · 一个关于主题理解的小小站点</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
